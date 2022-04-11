@@ -18,8 +18,9 @@ Python and pip installed
 git clone https://github.com/fireblocks/ada_staking.git`
 
 Run:
-`python3 install -r requirements.txt`
+`pip3 install -r requirements.txt`
 
 Usage: 
 `staking.py -v <VAULT_ACCOUNT_ID> -k <BLOCKFROST_API_KEY> -n {testnet, mainnet} {register,deregister,query-rewards,withdraw-rewards,delegate}`
+
 If the operation is `delegate`, please make sure to add `-p <STAKING_POOL_ID`
