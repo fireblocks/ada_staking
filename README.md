@@ -20,6 +20,10 @@ Clone the repository:
 
 `git clone https://github.com/fireblocks/ada_staking.git`
 
+Update the following parameters in the staking.py file:
+1. apiKey - your Fireblocks API key
+2. apiSecret - the path to your API secret key file
+
 Run:
 `pip3 install -r requirements.txt`
 
