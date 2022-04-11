@@ -16,8 +16,9 @@ Make sure you have the credentials for Fireblocks API Services. Otherwise, pleas
 Python and pip installed
 
 #### Installation
-`Clone the repository:
-git clone https://github.com/fireblocks/ada_staking.git`
+Clone the repository:
+
+`git clone https://github.com/fireblocks/ada_staking.git`
 
 Run:
 `pip3 install -r requirements.txt`
