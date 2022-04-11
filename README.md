@@ -4,7 +4,8 @@
 ### About
 This repository contains the SDK for staking Cardano in Fireblocks.
 
-NOTE: This SDK uses Fireblocks RAW signing, kindly note that running this SDK is on your own responsibility.
+NOTE: This SDK uses Fireblocks RAW signing.
+Kindly note that running this SDK is on your own responsibility.
 Fireblocks team is here for any assistance and guidance.
 
 
