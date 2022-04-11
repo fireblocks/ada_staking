@@ -1,25 +1,25 @@
 # Ada Staking
 
-Clone the repository 
 
-Run: python3 install -r requirements.txt
+### About
+This repository containes the SDK for staking Cardano in Fireblocks.
+NOTE: This SDK uses Fireblocks RAW signing, kindly note that running this SDK is on your own responsibility. Fireblocks team is here for any assistance and guidance.
 
-usage: staking.py [-h] -v VAULT_ACCOUNT -a ADDRESS -k KEY {register,deregister,query-rewards,withdraw-rewards,delegate} ...
 
-staking FB cardano wallet.
+## Usage
+#### Before You Begin
+Make sure you have the credentials for Fireblocks API Services. Otherwise, please contact Fireblocks support for further instructions on how to obtain your API credentials.
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -v VAULT_ACCOUNT, --vault-account VAULT_ACCOUNT
-                        Vault account
-  -a ADDRESS, --address ADDRESS
-                        Wallet permanent address
-  -k KEY, --key KEY     Blockfrost api key
+#### Requirements
+Python and pip installed
 
-operation:
-  {register,deregister,query-rewards,withdraw-rewards,delegate}
-    register            register certificate
-    deregister          deregister
-    query-rewards       Print account rewards
-    withdraw-rewards    withdraw rewards
-    delegate            delegate to stake pool
+#### Installation
+`Clone the repository:
+git clone https://github.com/fireblocks/ada_staking.git`
+
+Run:
+`python3 install -r requirements.txt`
+
+Usage: 
+`staking.py -v <VAULT_ACCOUNT_ID> -k <BLOCKFROST_API_KEY> -n {testnet, mainnet} {register,deregister,query-rewards,withdraw-rewards,delegate}`
+If the operation is `delegate`, please make sure to add `-p <STAKING_POOL_ID`
