@@ -1,4 +1,9 @@
-# ada-staking
+# Ada Staking
+
+Clone the repository 
+
+Run: python3 install -t requirements.txt
+
 usage: staking.py [-h] -v VAULT_ACCOUNT -a ADDRESS -k KEY {register,deregister,query-rewards,withdraw-rewards,delegate} ...
 
 staking FB cardano wallet.
