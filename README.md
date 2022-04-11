@@ -23,4 +23,4 @@ Run:
 Usage: 
 `staking.py -v <VAULT_ACCOUNT_ID> -k <BLOCKFROST_API_KEY> -n {testnet, mainnet} {register,deregister,query-rewards,withdraw-rewards,delegate}`
 
-If the operation is `delegate`, please make sure to add `-p <STAKING_POOL_ID`
+If the operation is `delegate`, please make sure to add `-p <STAKING_POOL_ID>`
