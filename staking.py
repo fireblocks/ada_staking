@@ -11,9 +11,12 @@ import argparse
 from time import sleep
 from fireblocks_sdk import *
 
-apiSecret = open('/Users/slavaserebriannyi/api_keys/fireblocks_secret.key', 'r').read()
-apiKey = 'f704b8d8-29d2-5ce9-9e15-4a3ad29e585a' #mainnet
-#apiKey = 'd5ce7e80-d6a5-598a-88a3-037660377627' #testnet
+
+#Update the following parameters with your API key and secret
+apiSecret = open('<path_to_your_secret_key>', 'r').read()
+apiKey = '<your_api_key>' 
+
+
 fireblocks = FireblocksSDK(apiSecret, apiKey)
 
 
