@@ -2,7 +2,7 @@
 
 Clone the repository 
 
-Run: python3 install -t requirements.txt
+Run: python3 install -r requirements.txt
 
 usage: staking.py [-h] -v VAULT_ACCOUNT -a ADDRESS -k KEY {register,deregister,query-rewards,withdraw-rewards,delegate} ...
 
