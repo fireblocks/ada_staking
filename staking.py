@@ -135,12 +135,11 @@ class CardanoStaking(object):
             raw_message=RawMessage(
                 messages = [
                     UnsignedMessage(
-                        content = txHash,
-                        bip44addressIndex=0
+                        content = txHash
                     ),
                     UnsignedMessage(
                         content = txHash,                        
-                        bip44addressIndex=CHIMERIC_INDEX
+                        bip44change = CHIMERIC_INDEX
                     )
                 ],
             ),
