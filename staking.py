@@ -13,8 +13,8 @@ from fireblocks_sdk import *
 
 
 #Update the following parameters with your API key and secret
-apiSecret = open('<path_to_your_secret_key>', 'r').read()
-apiKey = '<your_api_key>' 
+apiSecret = open('b7e194b8-6423-41a0-e9ff-681ff89c9d78', 'r').read()
+apiKey = 'fpub8sZZXw2wbqVpVRogzxEw45b2EA6FcYiuTNB3yPEH8EuTs2kZe4oYeHYm1jFV54x2WNSRBVKBrTTaeLJ8tdF4etUb9ujo8gAKn5dEm4z9BAw' 
 
 
 fireblocks = FireblocksSDK(apiSecret, apiKey)
