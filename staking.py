@@ -169,6 +169,7 @@ class CardanoStaking(object):
 
 
     def __query_account_rewards(self) -> Response:
+        current_epoch = int(api.epoch_latest().epoch)
         stake_address = self.__get_stake_address_from_base_address()
 
         account_rewards = api.account_rewards(
@@ -176,6 +177,10 @@ class CardanoStaking(object):
         count=20,
         gather_pages=True, # will collect all pages
         )
+
+        def valid_epoch(x):
+            return x.epoch <= current_epoch - 2
+        account_rewards = list(filter(valid_epoch, account_rewards))
 
         account_withdrawals = api.account_withdrawals(
         stake_address=stake_address,
