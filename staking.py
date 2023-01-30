@@ -241,7 +241,7 @@ class CardanoStaking(object):
 
             # Blockfrost python client expects to receive a file constructed by cardano-cli
             # Therefore we submit via requests, and should submit to different url than ApiUrls' values.
-            BASE_URL = "https://cardano-mainnet.blockfrost.io/api/v0" if self.__mainnet else "https://cardano-testnet.blockfrost.io/api/v0"
+            BASE_URL = "https://cardano-mainnet.blockfrost.io/api/v0" if self.__mainnet else "https://cardano-preprod.blockfrost.io/api/v0"
 
             url = "%s/tx/submit" % BASE_URL
             res = requests.post(
@@ -461,11 +461,10 @@ if __name__ == "__main__":
     delegate_parser.add_argument('-p', '--pool-id' , help='Pool ID that you want to delegate to', required=True)
 
     args = parser.parse_args()
-
+    
+    is_mainnet = False
     if args.network == 'mainnet':
         is_mainnet = True
-    else:
-        is_mainnet = False
     
     global VAULT_ACCOUNT 
     global OPERATION
@@ -488,7 +487,7 @@ if __name__ == "__main__":
         else:
             base_address = vault_addresses[1]["address"]
 
-    base_url = ApiUrls.mainnet.value if is_mainnet else ApiUrls.testnet.value
+    base_url = ApiUrls.mainnet.value if is_mainnet else "https://cardano-preprod.blockfrost.io/api"
 
 
     api = BlockFrostApi(
