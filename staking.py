@@ -225,7 +225,6 @@ class CardanoStaking(object):
         reward_amount = available_rewards
         if reward_amount == 0:
             print('No rewards to withdraw')
-            return
         elif reward_amount > max_withdrawal:
             reward_amount = max_withdrawal
 
