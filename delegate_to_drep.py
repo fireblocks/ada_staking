@@ -37,10 +37,9 @@ def wait_for_transaction_confirmation(fireblocks, txid):
     return tx
 
 
-def fireblocks_sign_tx(fireblocks, tx_hash_hex, vault_account, network, operation="DRep delegation") -> Tuple[
+def fireblocks_sign_tx(fireblocks, tx_hash_hex, vault_account, asset_id, operation="DRep delegation") -> Tuple[
     dict, dict]:
     """Send transaction for signing with Fireblocks"""
-    asset_id = 'ADA' if network == 'mainnet' else 'ADA_TEST'
 
     note = f"Cardano delegate to DRep {operation} for vault account {vault_account}"
 
@@ -63,7 +62,6 @@ def fireblocks_sign_tx(fireblocks, tx_hash_hex, vault_account, network, operatio
     print(f"Created Fireblocks transaction: {tx_res['id']}")
 
     sig_res = wait_for_transaction_confirmation(fireblocks, tx_res['id'])
-    print(sig_res)
 
     return sig_res
 
@@ -102,7 +100,6 @@ def main():
     if args.drep_action == 'custom-drep' and not args.drep_id:
         parser.error("--drep-id is required when --drep-action is custom-drep")
 
-
     api_secret = open(args.api_secret, 'r').read()
     fireblocks = FireblocksSDK(api_secret, args.api_key)
 
@@ -121,10 +118,9 @@ def main():
 
     base_address = Address.from_primitive(base_address_str)
 
-    blockfrost_url_base = "https://cardano-mainnet.blockfrost.io/api" if args.network == 'mainnet' else "https://cardano-preprod.blockfrost.io/api"
     blockfrost_api = BlockFrostApi(
         project_id=args.key,
-        base_url=blockfrost_url_base
+        base_url=base_url
     )
 
     # Find a suitable UTXO
@@ -180,28 +176,17 @@ def main():
         fireblocks,
         tx_hash_hex,
         args.vault_account,
-        args.network
+        asset_id
     )
 
-    # Identify payment and stake signatures based on derivation path
-    payment_vkey = None
-    payment_signature = None
-    stake_vkey = None
-    stake_signature = None
+    if len(sig_res['signedMessages']) != 2:
+        print("Error: Did not get 2 signatures")
 
-    for sig_msg in sig_res['signedMessages']:
-        derivation_path = sig_msg.get('derivationPath', [])
-        if len(derivation_path) >= 4 and derivation_path[3] == 2:
-            stake_vkey = bytes.fromhex(sig_msg['publicKey'])
-            stake_signature = bytes.fromhex(sig_msg['signature']['fullSig'])
-        else:
-            payment_vkey = bytes.fromhex(sig_msg['publicKey'])
-            payment_signature = bytes.fromhex(sig_msg['signature']['fullSig'])
+    payment_vkey = bytes.fromhex(sig_res['signedMessages'][0]['publicKey'])
+    payment_signature = bytes.fromhex(sig_res['signedMessages'][0]['signature']['fullSig'])
 
-    # Verify we have both keys
-    if not payment_vkey or not stake_vkey:
-        print("Error: Could not identify both payment and stake keys from response")
-        return
+    stake_vkey = bytes.fromhex(sig_res['signedMessages'][1]['publicKey'])
+    stake_signature = bytes.fromhex(sig_res['signedMessages'][1]['signature']['fullSig'])
 
     # Create proper VerificationKey objects
     payment_vk = VerificationKey(payment_vkey)
