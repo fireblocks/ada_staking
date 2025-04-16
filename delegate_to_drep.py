@@ -181,6 +181,7 @@ def main():
 
     if len(sig_res['signedMessages']) != 2:
         print("Error: Did not get 2 signatures")
+        return
 
     payment_vkey = bytes.fromhex(sig_res['signedMessages'][0]['publicKey'])
     payment_signature = bytes.fromhex(sig_res['signedMessages'][0]['signature']['fullSig'])
