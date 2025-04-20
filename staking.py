@@ -4,7 +4,7 @@ import bech32
 import cbor2
 import hashlib
 from typing import List, NamedTuple
-from blockfrost import BlockFrostApi, ApiError, ApiUrls
+from blockfrost import BlockFrostApi, ApiUrls
 from httplib2 import Response
 import requests
 import argparse
@@ -13,9 +13,8 @@ from fireblocks_sdk import *
 
 
 #Update the following parameters with your API key and secret
-apiSecret = open('<path_to_your_secret_key>', 'r').read()
-apiKey = '<your_api_key>' 
-
+apiSecret = open("<your_api_secret_path>", 'r').read()
+apiKey = "<your_api_key>"
 
 fireblocks = FireblocksSDK(apiSecret, apiKey)
 
@@ -26,7 +25,7 @@ ADA_TEST_COIN_TYPE = 1
 CHANGE_INDEX = 0
 PERMENANT_ACCOUNT_INDEX = 0
 CHIMERIC_INDEX = 2
-DEFAULT_NATIVE_TX_FEE = 300000  # Over-estimate (0.3 ADA)
+DEFAULT_NATIVE_TX_FEE = 300000
 DEPOSIT_AMOUNT = 2000000
 TX_TTL_SECS = 7200  # 2 Hours
 MIN_UTXO_VALUE_ADA_ONLY = 1000000
@@ -487,7 +486,6 @@ if __name__ == "__main__":
             base_address = vault_addresses[1]["address"]
 
     base_url = ApiUrls.mainnet.value if is_mainnet else "https://cardano-preprod.blockfrost.io/api"
-
 
     api = BlockFrostApi(
         project_id=args.key,
