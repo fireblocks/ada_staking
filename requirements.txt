@@ -2,3 +2,4 @@ fireblocks_sdk
 pycardano==0.13.2
 bech32==1.2.0
 httplib2==0.22.0
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
