@@ -1,8 +1,4 @@
-bech32==1.2.0
-blockfrost-python==0.4.2
-cbor2==5.4.4
-httplib2==0.20.4
-requests==2.25.1
-typing==3.7.4.3
 fireblocks_sdk
 pycardano==0.13.2
+bech32==1.2.0
+httplib2==0.22.0
